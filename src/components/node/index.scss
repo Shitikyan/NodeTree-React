@@ -1,0 +1,49 @@
+$main-rad: 10px;
+$border-width: 2px;
+$main-label-height: 2rem;
+
+@mixin flex-row {
+  display: flex;
+  float: row;
+}
+
+$main-transition: transform 0.3s linear;
+
+.node-container {
+  @include flex-row;
+  background-color: azure;
+  border-radius: $main-rad;
+
+  .node {
+    width: min-content;
+    height: $main-label-height;
+    box-sizing: border-box;
+
+    @include flex-row;
+    align-items: center;
+
+    background-color: aliceblue;
+
+    border: solid;
+    border-width: 2px;
+    border-color: aqua;
+    border-radius: $main-rad;
+
+    .title {
+      margin: 0;
+      display: inline;
+    }
+
+    .arrow {
+      height: $main-label-height;
+      transition: $main-transition;
+      display: inline;
+    }
+  }
+
+  .childrens {
+    margin-bottom: $main-label-height;
+    position: relative;
+    top: 2rem;
+  }
+}
