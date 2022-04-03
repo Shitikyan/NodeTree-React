@@ -1,5 +1,3 @@
-$main-rad: 10px;
-$border-width: 2px;
 $main-label-height: 2rem;
 
 @mixin flex-row {
@@ -11,8 +9,6 @@ $main-transition: transform 0.3s linear;
 
 .node-container {
   @include flex-row;
-  background-color: azure;
-  border-radius: $main-rad;
 
   .node {
     width: min-content;
@@ -22,16 +18,10 @@ $main-transition: transform 0.3s linear;
     @include flex-row;
     align-items: center;
 
-    background-color: aliceblue;
-
-    border: solid;
-    border-width: 2px;
-    border-color: aqua;
-    border-radius: $main-rad;
-
     .title {
       margin: 0;
       display: inline;
+      margin-bottom: 0.2rem;
     }
 
     .arrow {

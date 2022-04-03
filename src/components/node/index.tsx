@@ -6,15 +6,11 @@ import arrowIcon from "../../images/chevron.png";
 
 import "./index.scss";
 
-const Node = (props: NodeProps) => {
+const Node = ({ nodes, title }: NodeProps) => {
   const [toggle, setToggle] = useState<boolean>(false);
 
-  const chevronRotator = (degree: number): Rotator => {
-    return { transform: `rotate(${degree}deg)` };
-  };
-
-  const chevronPosition: Rotator = useMemo<Rotator>(
-    () => chevronRotator(Number(toggle) * 90),
+  const chevronPosition: Rotator = useMemo(
+    () => ({ transform: `rotate(${toggle ? 90 : 0}deg)` }),
     [toggle]
   );
 
@@ -23,17 +19,26 @@ const Node = (props: NodeProps) => {
       <span
         className="node"
         onClick={() => {
-          console.log(props.title);
-          setToggle(!toggle);
+          console.log(title);
+          if (nodes.length > 0) {
+            setToggle(!toggle);
+          }
         }}
       >
-        <p className="title">{props.title}</p>
-        <img src={arrowIcon} className="arrow" style={chevronPosition} alt="" />
+        <p className="title">{title}</p>
+        {nodes.length > 0 && (
+          <img
+            src={arrowIcon}
+            className="arrow"
+            style={chevronPosition}
+            alt="chevron"
+          />
+        )}
       </span>
       <span className="childrens">
         {toggle &&
-          props.nodes.map((elem: NodeProps, iter: number) => (
-            <Node title={elem.title} nodes={elem.nodes} key={iter} />
+          nodes.map((elem: NodeProps, index: number) => (
+            <Node title={elem.title} nodes={elem.nodes} key={index} />
           ))}
       </span>
     </div>
